@@ -1,0 +1,20 @@
+import React from 'react';
+import { createContext, useContext } from 'react';
+import { Alert } from 'react-native';
+
+export const AuthContextList = createContext();
+
+export const AuthProviderList = (props) => {
+
+    const onOpen = () => {
+        alert('Atenção', 'Modal Aberto')
+    }
+
+    return (
+        <AuthContextList.Provider value={{onOpen}}>
+            {props.children}
+        </AuthContextList.Provider>
+    )
+}
+
+export const useAuth = () => useContext(AuthContextList);
