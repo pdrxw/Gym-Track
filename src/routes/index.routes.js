@@ -10,7 +10,8 @@ export default function Routes() {
 
     return (
         <Stack.Navigator
-            initialRouteName="BottomRoutes"
+            // initialRouteName="BottomRoutes"
+            initialRouteName='Login'
             screenOptions={{
                 headerShown: false,
                 cardStyle:{

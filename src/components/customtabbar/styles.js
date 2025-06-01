@@ -32,6 +32,13 @@ export default StyleSheet.create({
         borderRadius: 35,
         zIndex: 9999,
         top: -30,
-        backgroundColor: themes.colors.secondary
+        backgroundColor: themes.colors.secondary,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 12,
+        },
+        shadowOpacity: 0.58,
+        shadowRadius: 16.00,
     }
 });
