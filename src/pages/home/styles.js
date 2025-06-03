@@ -124,7 +124,7 @@ export default StyleSheet.create({
     },
     completedText: {
         color: themes.colors.secondary,
-        textDecorationLine: 'line-through',
+        // textDecorationLine: 'line-through',
     },
     cardDescription: {
         fontSize: 14,
@@ -151,22 +151,108 @@ export default StyleSheet.create({
     modalContainer: {
         padding: 20,
         paddingTop: 40
-      },
-      modalTitle: {
+    },
+    modalTitle: {
         fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 20,
         textAlign: 'center'
-      },
-      modalOption: {
+    },
+    modalOption: {
         padding: 15,
         borderBottomWidth: 1,
         borderBottomColor: '#eee'
-      },
-      deleteOption: {
+    },
+    deleteOption: {
         backgroundColor: '#ffebee'
-      },
-      deleteText: {
+    },
+    deleteText: {
         color: '#d32f2f'
-      }
+    },
+    pointsText: {
+        fontSize: 14,
+        color: 'red',
+        fontFamily: 'Montserrat_400Regular',
+        marginTop: 5,
+    },
+    // Estilos para a seção de produtos parceiros
+    partnerSection: {
+        marginTop: 20,
+        marginBottom: 30,
+    },
+    productsGrid: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        marginTop: 15,
+    },
+    productContainer: {
+        width: '48%',
+        marginBottom: 15,
+    },
+    productItem: {
+        backgroundColor: themes.colors.black,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: themes.colors.veryblack,
+        padding: 10,
+        alignItems: 'center',
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        elevation: 3,
+    },
+    productImage: {
+        width: 100,
+        height: 100,
+        borderRadius: 10,
+        marginBottom: 8,
+    },
+    productName: {
+        fontFamily: 'Montserrat_700Bold',
+        fontSize: 14,
+        color: themes.colors.white,
+        textAlign: 'center',
+        marginBottom: 4,
+    },
+    productDescription: {
+        fontFamily: 'Montserrat_400Regular',
+        fontSize: 12,
+        color: themes.colors.gray,
+        textAlign: 'center',
+    },
+    productPrice: {
+        fontFamily: 'Montserrat_700Bold',
+        fontSize: 12,
+        color: themes.colors.white,
+        marginTop: 4,
+        marginLeft: 4,
+    },
+    buyButton: {
+        width: '50%',
+        height: 30,
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: themes.colors.secondary,
+        marginTop: 4,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+    },
+    buyButtonText: {
+        fontFamily: 'Montserrat_700Bold',
+        fontSize: 12,
+        color: themes.colors.white,
+    },  
+    productPriceContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 4,
+    },
 });

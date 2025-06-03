@@ -8,7 +8,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../services/firebase.config';
+import { db, auth } from '../../services/firebase.config';
+import { doc, setDoc } from 'firebase/firestore';
 
 export default function Register() {
 
@@ -25,25 +26,41 @@ export default function Register() {
   });
 
   if (!fontsLoaded) {
-    return null;
+    return(
+      <LinearGradient 
+      style={style.container} 
+      colors={[themes.colors.black, themes.colors.primary]}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+    >
+    </LinearGradient>
+    );
   }
 
   function userRegister() {
-    if(user === '' || name === '' || email === '' || password === '') {
+    if (user === '' || name === '' || email === '' || password === '') {
       alert('Preencha todos os campos!');
       return;
     } else {
       createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        alert('Cadastro realizado com sucesso!');
-        navigation.navigate('Login');
-      })
-      .catch ((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage);
-      });
+        .then(async (userCredential) => {
+          const currentUser = userCredential.user;
+  
+          // Salva os dados no Firestore
+          await setDoc(doc(db, "users", currentUser.uid), {
+            usuario: user,      // <-- aqui está o campo de username
+            name: name,
+            email: email,
+            createdAt: new Date()
+          });
+  
+          alert('Cadastro realizado com sucesso!');
+          navigation.navigate('Login');
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          alert(errorMessage);
+        });
     }
   }
 
@@ -65,12 +82,12 @@ export default function Register() {
           <MaterialIcons name="person" size={24} color={themes.colors.gray}/>
         </View>
 
-        <Text style={style.labelInput}>Nome Completo</Text>
+        <Text style={style.labelInput}>Nome</Text>
         <View style={style.boxInput}> 
           <TextInput 
             style={style.input} 
             value={name}
-            onChangeText={setName}
+            onChangeText={setName}  
           />
           <MaterialIcons name="drive-file-rename-outline" size={24} color={themes.colors.gray}/>
         </View>
@@ -81,7 +98,7 @@ export default function Register() {
             style={style.input} 
             autoCapitalize='none'
             autoComplete='email'
-            keyboardType='email-address' 
+            keyboardType='email-address'
             value={email}
             onChangeText={setEmail}
           />
